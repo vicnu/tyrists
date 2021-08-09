@@ -1,0 +1,15 @@
+{% extends "tyrists_app/base.html"%}
+{% block title%}
+{{title}}
+{% endblock %}
+{% block description %}
+    <H1>Наши туры <b>"Hjuf b Rjgsnf"</b></H1>
+{%for tyr in tyrss%}
+    <div>
+        <h4>{{tyr.TyrName}}</h4>
+        <p>{{tyr.TyrType}}</p>
+{#        <p>{{tyr.TyrPhoto}}</p>#}
+        <p>{{tyr.TyrPrice}}</p>
+    </div>
+{%endfor%}
+{% endblock %}
