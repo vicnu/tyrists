@@ -18,7 +18,7 @@ from django.urls import path
 from tyrists_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",views.index),
-    path('about/',views.dabout),
-    path('contacts/',views.contacts)
+    path("",views.index,name="home"),
+    path('about/',views.dabout,name="about"),
+    path('contacts/',views.contacts,name="contacts")
 ]
