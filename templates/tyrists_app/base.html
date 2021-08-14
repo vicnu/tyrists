@@ -4,10 +4,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href='{% static "tyrists_app/style.css" %}'>
     <title>{% block tittle %}{% endblock %}</title>
 </head>
 <body>
-<div class="container">
+<div class="navbar">
         <nav>
             <li><a href = "{% url 'home'%}">Home</a></li>
             <li><a href = "{% url 'about'%}">About</a></li>

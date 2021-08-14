@@ -3,9 +3,9 @@
 {{title}}
 {% endblock %}
 {% block description %}
-    <H1>Наши туры </H1>
+    <H1 style="margin-top:100px">Наши туры </H1>
 {%for tyr in tyrss%}
-    <div>
+    <div  class="styr">
         <h4>{{tyr.TyrName}}</h4>
         <p>{{tyr.TyrType}}</p>
 {#        <p>{{tyr.TyrPhoto}}</p>#}
