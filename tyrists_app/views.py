@@ -12,4 +12,6 @@ def index(request):
 def dabout(request):
     return render(request,"tyrists_app/about.html")
 def contacts(request):
-    return render(request,"tyrists_app/contacts.html")
+    return render(request,"contacts.html")
+def faq(request):
+    return render(request,"tyrists_app/faq.html")
