@@ -4,25 +4,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href='{% static "tyrists_app/style.css" %}'>
     <title>{% block tittle %}{% endblock %}</title>
 </head>
 <body>
-<div class="navbar">
+<header>
+    <div class="navbar">
         <nav>
-            <li><a href = "{% url 'home'%}">Home</a></li>
-            <li><a href = "{% url 'about'%}">About</a></li>
-            <li><a href = "{% url 'faq'%}">Questions</a></li>
-            <li><a href = "{% url 'contacts'%}">Contacts</a></li>
-{#            {% if user.is_authenticated %}#}
-{#            <li><a href = "{% url 'logout'%}">Log out</a></li>#}
-{#            {% else %}#}
-{#                <li><a href = "{% url 'register'%}">Sign Up</a></li>#}
-{#                <li><a href = "{% url 'login'%}">Sign in</a></li>#}
-{#            {% endif %}#}
+                <a href = "{% url 'home'%}">Home</a><
+                <a href = "{% url 'about'%}">About</a>
+                <a href = "{% url 'faq'%}">Questions</a>
+                <a href = "{% url 'contacts'%}">Contacts</a>
+           {% if user.is_authenticated %}
+                    <a href = "{% url 'tyr-create'%}">Create new trip</a>
+                    <a style="margin-left:200px" href  = "{% url 'users-profile'%}">My profile</a>
+                    <a  href = "{% url 'users-logout'%}">Log out</a>
+            {% else %}
+                   <a style="margin-left:200px" href = "{% url 'users-register'%}">Sign Up</a>
+                    <a href = "{% url 'users-login'%}">Sign in</a>
+            {% endif %}
         </nav>
     </div>
-
+</header>
+<br><br><br>
 {% block description %}
 
 

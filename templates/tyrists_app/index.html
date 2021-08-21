@@ -5,11 +5,21 @@
 {% block description %}
     <H1 style="margin-top:100px">Наши туры </H1>
 {%for tyr in tyrss%}
-    <div  class="styr">
-        <h4>{{tyr.TyrName}}</h4>
-        <p>{{tyr.TyrType}}</p>
+{#    <div  class="styr">#}
+{#        <h4>{{tyr.TyrName}}</h4>#}
+{#        <p>{{tyr.TyrType}}</p>#}
 {#        <p>{{tyr.TyrPhoto}}</p>#}
-        <p>{{tyr.TyrPrice}}</p>
-    </div>
+{#        <p>{{tyr.TyrPrice}}</p>#}
+{#    </div>#}
+
+    <div class="styr">
+            {%if post.Author.profile and post.Author.profile.image %}
+                <h3><img style = "width: 150px;height: 150px"
+                         src="{{object.Author.profile.image.url}}" alt
+                        ="{{object.Author.username}}">{{tyr.TyrName}}</h3>
+            {%endif%}
+            <h3><a href="{%  url 'tyr_detail' tyr.id %}">{{tyr.TyrName}}</a></h3>
+            <p>{{tyr.TyrType}}</p>
+        </div>
 {%endfor%}
 {% endblock %}
