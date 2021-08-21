@@ -1,0 +1,15 @@
+{% extends "tyrists_app/base.html"%}
+{%load crispy_forms_tags%}
+{% block description %}
+   <form method="POST">
+       {%csrf_token%}
+
+       <h3>Delete tyr!{{object.Title}}</h3>
+
+
+       <div class="">
+           <button type="submit">Delete</button>
+            <a href="{% url 'tyr_detail' object.id %}">Cancel</a>
+       </div>
+   </form>
+{% endblock %}

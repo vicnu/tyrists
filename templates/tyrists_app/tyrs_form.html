@@ -1,0 +1,14 @@
+{% extends "tyrists_app/base.html"%}
+{%load crispy_forms_tags%}
+{% block description %}
+   <form method="POST">
+       {%csrf_token%}
+
+       <h3>Create new tyr!</h3>
+    {{form|crispy}}
+
+       <div class="">
+           <button type="submit">Create</button>
+       </div>
+   </form>
+{% endblock %}

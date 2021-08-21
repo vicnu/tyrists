@@ -1,0 +1,24 @@
+{% extends "tyrists_app/base.html"%}
+{% block title%}
+{{title}}
+{% endblock %}
+{% block description %}
+
+
+    <div>
+        {%if object.Author == user%}
+            <a href="{% url 'tyr-update' object.id%}"><button>Update </button></a>
+            <a href="{% url 'tyr-delete' object.id%}"><button>Delete </button></a>
+        {%endif%}
+        {%if object.Author.profile and object.Author.profile.image %}
+            <h3><img style = "width: 150px;height: 150px"
+                     src="{{object.Author.profile.image.url}}"
+                     alt ="{{object.Author.username}}"></h3>
+        {%endif%}
+        <p> {{object.TyrName}}</p>
+        <p> {{object.TyrType}}</p>
+        <p> {{object.TyrPrice }}</p>
+
+    </div>
+
+{% endblock %}

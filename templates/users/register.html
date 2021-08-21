@@ -1,0 +1,17 @@
+{% extends "blog_app/base.html"%}
+{%load crispy_forms_tags%}
+{% block title%}
+{{title}}
+{% endblock %}
+{% block description %}
+   <form method="POST">
+       {%csrf_token%}
+       {{for|crispy}}
+       <h3>Welcome to our community. Please sing up!</h3>
+       {{form.as_p}}
+       <b></b>
+       <div class="">
+           <button type="submit">Sign up</button>
+       </div>
+   </form>
+{% endblock %}
