@@ -8,6 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from .filters import TyrsFilter
 from .models import Tyrs
 
 # Create your views here.
@@ -47,10 +48,12 @@ def contacts(request):
 def faq(request):
     return render(request,"tyrists_app/faq.html")
 
-class TyrsListView(ListView):
-    model=Tyrs
-    template_name = "tyrists_app/index.html"
-    context_object_name = "tyrss"
+# class TyrsListView(ListView):
+#     model=Tyrs
+#     filter_class = TyrsFilter
+#     template_name = "tyrists_app/index.html"
+#     context_object_name = "tyrss"
+#     paginate_by = 5
 
 class TyrsDetailView(DetailView):
     model=Tyrs
@@ -59,7 +62,7 @@ class TyrsDetailView(DetailView):
 # #проверка от класса на залогиненого пользователя
 class TyrsCreateView(LoginRequiredMixin,CreateView):
     model=Tyrs
-    fields=['TyrName','TyrType','TyrPrice']
+    fields=['TyrName','TyrType','TyrPrice',"TyrPoint"]
 
 
     def form_valid(self, form):
@@ -84,3 +87,26 @@ class TyrsDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     def test_func(self):
         tyr=self.get_object()
         return self.request.user==tyr.Author
+
+
+class FilterTyrsListView(ListView):
+    filter_class = None
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        req=self.request.GET
+        self.filtered=self.filter_class(req,qs)
+        return self.filtered.qs.distinct()
+
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context["filter"]=self.filtered
+        return context
+
+class TyrsListView(FilterTyrsListView):
+
+    model=Tyrs
+    filter_class = TyrsFilter
+    template_name = "tyrists_app/index.html"
+    context_object_name = "tyrss"
+    paginate_by = 5

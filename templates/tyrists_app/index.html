@@ -1,9 +1,14 @@
 {% extends "tyrists_app/base.html"%}
+{%load crispy_forms_tags%}
 {% block title%}
 {{title}}
 {% endblock %}
 {% block description %}
     <H1 style="margin-top:100px">Наши туры </H1>
+    <br>
+
+
+
 {%for tyr in tyrss%}
 {#    <div  class="styr">#}
 {#        <h4>{{tyr.TyrName}}</h4>#}
@@ -19,7 +24,33 @@
                         ="{{object.Author.username}}">{{tyr.TyrName}}</h3>
             {%endif%}
             <h3><a href="{%  url 'tyr_detail' tyr.id %}">{{tyr.TyrName}}</a></h3>
+
             <p>{{tyr.TyrType}}</p>
         </div>
 {%endfor%}
+<form method="GET">
+    {%csrf_token%}
+    {{ filter.form|crispy }}
+    <button type = "submit">Filter</button>
+</form>
+{% if is_paginated %}
+    {% if page_obj.has_previous %}
+        <a href="?page=1">first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <a style = "color: black" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'+3' %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {%if page_obj.has_next%}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+{% endif %}
+
 {% endblock %}

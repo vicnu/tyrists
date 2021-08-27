@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tyrists_app',
     'crispy_forms',
-    'users'
+    'users',
+    'django_filters'
 ]
 
 MIDDLEWARE = [

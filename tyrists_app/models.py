@@ -12,7 +12,7 @@ class Tyrs(models.Model):##Таблица туров
     Author = models.ForeignKey(User, null=True, default=None, blank=True, on_delete=models.CASCADE)
     CreationDate = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     image = models.ImageField(default="tyr_default.jpg", null=True, blank=True, upload_to='tyrs_imgs')
-
+    TyrPoint = models.CharField(max_length=1024,null=True,blank=True)
     def __str__(self):
         return self.TyrName
 
